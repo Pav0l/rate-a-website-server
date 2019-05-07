@@ -13,29 +13,6 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-/**
- * { value: '3',
-  tab:
-   { active: true,
-     audible: false,
-     autoDiscardable: true,
-     discarded: false,
-     favIconUrl: 'https://www.wikipedia.org/static/favicon/wikipedia.ico',
-     height: 592,
-     highlighted: true,
-     id: 2,
-     incognito: false,
-     index: 0,
-     mutedInfo: { muted: false },
-     pinned: false,
-     selected: true,
-     status: 'complete',
-     title: 'Wikipedia',
-     url: 'https://www.wikipedia.org/',
-     width: 1350,
-     windowId: 1 } }
- */
-
 router.post('/', async (req, res, next) => {
   const { value, tab } = req.body;
   if (value && tab) {
@@ -44,6 +21,7 @@ router.post('/', async (req, res, next) => {
         url: urlSplitter(tab.url),
         rating: Number(value),
         id: uuid(),
+        ip: req.ip,
       });
 
       if (newRating) {

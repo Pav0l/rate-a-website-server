@@ -7,6 +7,7 @@ for (let i = 0; i < 50; i++) {
     id: uuid(),
     url: faker.internet.url(),
     rating: Math.ceil(Math.random() * 5),
+    ip: faker.internet.ip(),
   };
   seedData.push(survey);
 }

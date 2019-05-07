@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const uuid = require('uuid');
+
+const urlSplitter = require('../utils/urlSplitter');
 const Survey = require('../models/survey');
 
 router.get('/', async (req, res, next) => {
@@ -38,8 +41,9 @@ router.post('/', async (req, res, next) => {
   if (value && tab) {
     try {
       const newRating = await Survey.addSurvey({
-        url: tab.url,
+        url: urlSplitter(tab.url),
         rating: Number(value),
+        id: uuid(),
       });
 
       if (newRating) {

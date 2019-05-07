@@ -6,7 +6,11 @@
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --watch",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate": "knex migrate:latest",
+    "migrate:test": "cross-env NODE_ENV=testing knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "https://github.com/Pav0l",

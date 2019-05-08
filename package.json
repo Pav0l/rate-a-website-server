@@ -16,6 +16,7 @@
   "author": "https://github.com/Pav0l",
   "license": "MIT",
   "dependencies": {
+    "@hapi/joi": "^15.0.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -25,7 +26,6 @@
     "express-winston": "^3.1.0",
     "faker": "^4.1.0",
     "helmet": "^3.16.0",
-    "joi": "^14.3.1",
     "knex": "^0.16.5",
     "knex-cleaner": "^1.1.4",
     "pg": "^7.10.0",

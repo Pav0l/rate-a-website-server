@@ -5,8 +5,8 @@ module.exports = {
   getRatingsNoIp: () => db.select('id', 'url', 'rating').from('survey'),
   getAverageRatings: () =>
     db
-      .select('url as Website')
-      .avg('rating as Average Rating')
+      .select('url as website')
+      .avg('rating as average rating')
       .from('survey')
       .groupBy('url'),
   addSurvey: survey => db('survey').insert(survey),

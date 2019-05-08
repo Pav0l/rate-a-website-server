@@ -6,8 +6,17 @@ const Survey = require('../models/survey');
 
 router.get('/', async (req, res, next) => {
   try {
-    const allRatings = await Survey.getAllResults();
+    const allRatings = await Survey.getRatingsNoIp();
     res.status(200).json(allRatings);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/average', async (req, res, next) => {
+  try {
+    const avgRatings = await Survey.getAverageRatings();
+    res.status(200).json(avgRatings);
   } catch (err) {
     next(err);
   }

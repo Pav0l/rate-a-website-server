@@ -22,13 +22,14 @@ router.get('/average', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
-  const { value, tab } = req.body;
-  if (value && tab) {
+const validate = require('../middleware/validate');
+router.post('/', validate(Survey.schema), async (req, res, next) => {
+  const { rating, url } = req.body;
+  if (rating && url) {
     try {
       const newRating = await Survey.addSurvey({
-        url: urlSplitter(tab.url),
-        rating: Number(value),
+        url: urlSplitter(url),
+        rating: Number(rating),
         id: uuid(),
         ip: req.ip,
       });
@@ -42,7 +43,7 @@ router.post('/', async (req, res, next) => {
   } else {
     res
       .status(400)
-      .json({ message: 'Invalid req.body. Needs value and tab info' });
+      .json({ message: 'Invalid req.body. Needs rating and tab info' });
   }
 });
 

@@ -1,13 +1,23 @@
 const router = require('express').Router();
 const uuid = require('uuid');
 
+const validate = require('../middleware/validate');
 const urlSplitter = require('../utils/urlSplitter');
 const Survey = require('../models/survey');
 
 router.get('/', async (req, res, next) => {
   try {
-    const allRatings = await Survey.getRatingsNoIp();
-    res.status(200).json(allRatings);
+    const ratings = await Survey.getRatingsNoIp();
+    res.status(200).json(ratings);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/all', async (req, res, next) => {
+  try {
+    const ratings = await Survey.getAllRatings();
+    res.status(200).json(ratings);
   } catch (err) {
     next(err);
   }
@@ -22,7 +32,6 @@ router.get('/average', async (req, res, next) => {
   }
 });
 
-const validate = require('../middleware/validate');
 router.post('/', validate(Survey.schema), async (req, res, next) => {
   const { rating, url } = req.body;
   if (rating && url) {

@@ -35,7 +35,7 @@ router.post('/', validate(Survey.schema), async (req, res, next) => {
       });
 
       if (newRating) {
-        res.status(201).json(newRating);
+        res.status(201).json({ message: 'ok' });
       }
     } catch (err) {
       next(err);

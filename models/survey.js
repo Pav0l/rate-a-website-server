@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi');
 
 const db = require('../data/db');
-const chrome = require('../utils/invalidUrl');
+// const chrome = require('../utils/invalidUrl');
 
 module.exports = {
   getAllRatings: () => db('survey'),
@@ -24,9 +24,7 @@ module.exports = {
         .min(1)
         .max(5)
         .required(),
-      ip: Joi.string()
-        .ip()
-        .required(),
+      ip: Joi.string().ip(),
     });
 
     return Joi.validate(survey, schema);

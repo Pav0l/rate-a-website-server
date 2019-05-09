@@ -1,14 +1,16 @@
 module.exports = validate => {
   return (req, res, next) => {
-    const { error } = validate({
-      ...req.body,
-      ip: req.ip,
-    });
+    try {
+      const { error } = validate(req.body);
 
-    if (error) {
-      return res.status(422).json(error);
+      if (error) {
+        throw new Error(error);
+      }
+
+      next();
+    } catch (error) {
+      res.status(422).json(error.message);
+      throw new Error(error);
     }
-
-    next();
   };
 };

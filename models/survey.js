@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi');
 
 const db = require('../data/db');
-// const chrome = require('../utils/invalidUrl');
+const chrome = require('../utils/invalidUrl');
 
 module.exports = {
   getAllRatings: () => db('survey'),
@@ -17,7 +17,7 @@ module.exports = {
     const schema = Joi.object().keys({
       url: Joi.string()
         .uri()
-        .invalid('chrome://extensions') // does not work!
+        .invalid(chrome)
         .required(),
       rating: Joi.number()
         .integer()

@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const uuid = require('uuid');
+const cors = require('cors');
 
 const validate = require('../middleware/validate');
 const urlSplitter = require('../utils/urlSplitter');
 const Survey = require('../models/survey');
+
+router.options('*', cors());
 
 router.get('/', async (req, res, next) => {
   try {

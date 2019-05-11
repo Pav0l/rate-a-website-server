@@ -6,7 +6,11 @@ const validate = require('../middleware/validate');
 const urlSplitter = require('../utils/urlSplitter');
 const Survey = require('../models/survey');
 
-router.options('*', cors());
+const corsOptions = {
+  'Access-Control-Allow-Origin': '*',
+};
+
+router.options('*', cors(corsOptions));
 
 router.get('/', async (req, res, next) => {
   try {

@@ -4,10 +4,18 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const corsOptions = {
-  'Access-Control-Allow-Origin': '*',
+  // specify requests from which origin are allowed to use resources on server
+  origin: 'chrome-extension://akdeaedbblfhendjfkgmkkbmbfjfobpk',
+  // which methods fron origin are allowed
+  methods: ['POST', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Access-Control-Request-Method',
+    'Access-Control-Allow-Headers',
+  ],
 };
 
-// line up third pary middleware
+// line up third party middleware
 module.exports = server => {
   server.use(helmet());
   server.use(compression());

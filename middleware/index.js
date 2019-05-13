@@ -5,9 +5,9 @@ const helmet = require('helmet');
 
 const corsOptions = {
   // specify requests from which origin are allowed to use resources on server
-  origin: 'chrome-extension://akdeaedbblfhendjfkgmkkbmbfjfobpk',
+  // origin: 'chrome-extension://akdeaedbblfhendjfkgmkkbmbfjfobpk',
   // which methods fron origin are allowed
-  methods: ['POST', 'OPTIONS'],
+  methods: ['POST', 'OPTIONS', 'GET'],
   allowedHeaders: [
     'Content-Type',
     'Access-Control-Request-Method',

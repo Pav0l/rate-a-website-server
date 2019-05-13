@@ -9,7 +9,7 @@ module.exports = {
   getAverageRatings: () =>
     db
       .select('url')
-      .avg('rating as average rating')
+      .avg('rating as avgRating')
       .from('survey')
       .groupBy('url'),
   addSurvey: survey => db('survey').insert(survey),

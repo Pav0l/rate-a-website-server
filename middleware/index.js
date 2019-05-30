@@ -6,7 +6,8 @@ const helmet = require('helmet');
 const whitelist = [
   'moz-extension://8c764801-4e5d-403e-a0d8-69c226c13712',
   'chrome-extension://akdeaedbblfhendjfkgmkkbmbfjfobpk',
-  'chrome-extension://oplipkhodadjellpakfommojjmcikidf'
+  'chrome-extension://oplipkhodadjellpakfommojjmcikidf',
+  'https://happiest-websites.netlify.com'
 ];
 const corsOptions = {
   // specify requests from which origin are allowed to use resources on server

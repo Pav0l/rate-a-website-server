@@ -15,6 +15,7 @@ module.exports = {
     db
       .select('url')
       .avg('rating as avgRating')
+      .count('url as count')
       .from('survey')
       .groupBy('url')
       .orderBy('avgRating', 'desc'),

@@ -10,16 +10,13 @@ const whitelist = [
   'https://happiest-websites.netlify.com'
 ];
 const corsOptions = {
-  // specify requests from which origin are allowed to use resources on server
-  // origin: 'chrome-extension://akdeaedbblfhendjfkgmkkbmbfjfobpk',
-  // which methods fron origin are allowed
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  //   origin: function(origin, callback) {
+  //     if (whitelist.indexOf(origin) !== -1) {
+  //       callback(null, true);
+  //     } else {
+  //       callback(new Error('Not allowed by CORS'));
+  //     }
+  //   },
   methods: ['POST', 'OPTIONS', 'GET'],
   allowedHeaders: [
     'Content-Type',

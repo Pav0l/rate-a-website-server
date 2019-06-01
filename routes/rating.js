@@ -32,6 +32,15 @@ router.get('/average', async (req, res, next) => {
   }
 });
 
+router.get('/weighted', async (req, res, next) => {
+  try {
+    const result = await Survey.getWeightedAverage();
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/', validate(Survey.schema), async (req, res, next) => {
   const { rating, url } = req.body;
   if (rating && url) {
@@ -40,7 +49,7 @@ router.post('/', validate(Survey.schema), async (req, res, next) => {
         url: urlSplitter(url),
         rating: Number(rating),
         id: uuid(),
-        ip: req.ip,
+        ip: req.ip
       });
 
       if (newRating) {

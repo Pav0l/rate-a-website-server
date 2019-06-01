@@ -30,7 +30,7 @@ module.exports = {
       })
       .select(
         db.raw(
-          'url, MAX(x.num) as count, SUM(x.rating * x.num * 1.0)/SUM(x.num*1.0) as wtAvg from x'
+          '"url", MAX(x.num) as "count", SUM(x.rating * x.num * 1.0)/SUM(x.num*1.0) as "wtAvg" from x'
         )
       )
       .groupBy('url')

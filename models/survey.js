@@ -20,6 +20,25 @@ module.exports = {
       .groupBy('url')
       .orderBy('avgRating', 'desc'),
 
+  getWeightedAverage: () =>
+    db
+      .with('x', qb => {
+        qb.select('url', 'rating')
+          .count('url as num')
+          .from('survey')
+          .groupBy('url', 'rating');
+      })
+      .select(
+        db.raw(
+          'url, x.num as count, SUM(x.rating * x.num * 1.0)/SUM(x.num*1.0) as wtAvg from x'
+        )
+      )
+      .groupBy('url')
+      .orderBy([
+        { column: 'wtAvg', order: 'desc' },
+        { column: 'count', order: 'desc' }
+      ]),
+
   addSurvey: survey => db('survey').insert(survey),
   schema: survey => {
     const schema = Joi.object().keys({
